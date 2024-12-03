@@ -16,6 +16,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('create-payment-intent', 'PaymentController@createPaymentIntent');
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('in', 'AuthController@in');
+Route::post('out', 'AuthController@out');
+
+Route::group(['name' => 'inventory', 'prefix' => 'inventory'], function () {
+    Route::get('get-products','InventoryController@getProducts');
+    Route::get('get-product','InventoryController@getProduct');
+    Route::post('store','InventoryController@store');
+    Route::post('edit','InventoryController@edit');
 });
+
+
+
+/*Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});*/

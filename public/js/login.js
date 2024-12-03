@@ -1,4 +1,4 @@
- $(function () {
+$(function () {
 
     var App = {
         baseUrl : window.location.protocol + '//' + window.location.host,
@@ -18,10 +18,10 @@
         },
 
         logIn : function() {
-
+            
             $.ajax({
-                url: App.baseUrl + "/in",
-                type: 'GET',
+                url: App.baseUrl + "/api/in",
+                type: 'POST',
                 headers: App.csrfToken,
                 data: {
                     email : $('#email').val(),
@@ -29,9 +29,12 @@
                 },
                 dataType: 'json',
                 success: function (data) {
-                    if(data && data.success == true) window.location = App.baseUrl;
-                    else swal({ title: "Error!", text: data.message, type: "error"});
+                    if(data && data.user) window.location = App.baseUrl;
+                    else swal({ title: "Error!", text: 'Invalid credentials.', type: "error"});
                 },
+                error: function (request, status, error) {
+                    swal({ title: "Error!", text: 'Invalid credentials.', type: "error"});
+                }
             });
         },
     }

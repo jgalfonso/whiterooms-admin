@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Instrument Tracking System - EAMC | Login</title>
+    <title>Order Management & Sales System - Whiterooms | Login</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -45,15 +45,13 @@
     <div id="wrapper">
         <div class="auth-main particles_js">
             <div class="auth_div vivify popIn">
-                <div class="auth_brand" style="margin-bottom: 10px;">
-                    <a class="navbar-brand" href="javascript:void(0);"><img src="{{ URL::asset('assets/images/logo.png') }}" class="d-inline-block align-top mr-2" alt="" style="width: 120px;"></a>
-                </div>
-
                 <div class="card">
                     <div class="body">
-                        <span style="color: #000; font-size: 30px;"><b>OR-ITS</b> EAMC</span>
-                        <p class="lead"><b>OR - Instrument Tracking System</b></p>
+                        <div class="auth_brand" style="margin-bottom: 0;">
+                            <a class="navbar-brand" href="javascript:void(0);"><img src="assets/images/logo.jpeg" class="d-inline-block align-top mr-2" alt="" style="width: 100px;"></a>
+                        </div>
 
+                        <span style="color: #000; font-size: 30px;"><b>WHITEROOMS</b> V1.0</span>
                         <p class="lead" style="margin-top: 30px;">Already have an account?</p>
                         
                         <form class="form-auth-small m-t-20">

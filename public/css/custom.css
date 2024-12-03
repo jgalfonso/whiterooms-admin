@@ -41,9 +41,6 @@
 .table-custom tr th {
     font-weight: bolder !important;
 }
-.table-custom tr td {
-    
-}
 .table-custom tr td > input {
     background: #ffffff !important;
     text-align: right;

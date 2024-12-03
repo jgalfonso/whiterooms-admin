@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-//Route::get('login', ['as' => 'login', 'uses' => 'AuthController@index']);
-//Route::get('in', 'AuthController@in')->name('in');
-//Route::post('out', 'AuthController@out')->name('out');
+Route::get('login', ['as' => 'login', 'uses' => 'AuthController@index']);
+
+Route::group(['middleware' => 'supabase.session'], function() {
+    Route::get('/', 'MainController@index')->name('index');
+
+    Route::group(['name' => 'inventory', 'prefix' => 'inventory'], function () {
+        Route::get('/', 'InventoryController@index')->name('inventory');
+    });
+});
