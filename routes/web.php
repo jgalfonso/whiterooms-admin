@@ -16,6 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('login', ['as' => 'login', 'uses' => 'AuthController@index']);
 
+Route::group(['name' => 'paypal', 'prefix' => 'paypal'], function () {
+    Route::get('success', 'PayPalController@success')->name('paypal.success');
+    Route::get('cancelled', 'PayPalController@cancelled')->name('paypal.cancelled');
+});
+
 Route::group(['middleware' => 'supabase.session'], function() {
     Route::get('/', 'MainController@index')->name('index');
 

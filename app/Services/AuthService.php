@@ -45,6 +45,7 @@ class AuthService
             ]);
             return json_decode($response->getBody(), true);
         } catch (RequestException $e) {
+            dd($e);
             return [
                 'error' => $e->getMessage(),
                 'details' => $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null,
