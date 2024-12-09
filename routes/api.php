@@ -28,6 +28,11 @@ Route::group(['name' => 'inventory', 'prefix' => 'inventory'], function () {
     Route::post('edit','InventoryController@edit');
 });
 
+Route::group(['name' => 'orders', 'prefix' => 'orders'], function () {
+    Route::get('get-orders','OrderController@getOrders');
+});
+
+
 
 
 /*Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

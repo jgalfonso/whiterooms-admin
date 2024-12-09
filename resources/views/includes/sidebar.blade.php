@@ -1,13 +1,13 @@
 <div id="left-sidebar" class="sidebar mini_sidebar_on">
     <div class="navbar-brand">
-        <a href="index.html"><img src="assets/images/logo.jpeg" alt="AMCSS Logo" class="img-fluid logo"><span style="margin-left: 5px;"><b>WHITEROOMS</b> V1.0</span></a>
+        <a href="index.html"><img src="{{ URL::asset('assets/images/logo.jpeg') }}" alt="Whiterooms Logo" class="img-fluid logo"><span style="margin-left: 5px;"><b>WHITEROOMS</b> V1.0</span></a>
         <button type="button" class="btn-toggle-offcanvas btn btn-sm float-right"><i class="lnr lnr-menu icon-close"></i></button>
     </div>
 
     <div class="sidebar-scroll">
         <div class="user-account" style="text-align: center; margin: 20px 10px 0 10px;">
             <div class="user_div">
-                <img src="assets/images/avatar.jpg" class="user-photo" alt="User Profile Picture">
+                <img src="{{ URL::asset('assets/images/avatar.jpg') }}"  class="user-photo" alt="User Profile Picture">
             </div>
             <div class="dropdown" style="margin-left: 0;">
                 <span>Welcome,</span>
@@ -27,7 +27,7 @@
               
 
                 <li class="header">Transactions</li>
-                <li><a href=""><i class="icon-basket"></i><span>Orders</span></a></li>
+                <li class="{{ set_nav_status(['transactions/orders*']) }}"><a href="{{ route('orders') }}"><i class="icon-basket"></i><span>Orders</span></a></li>
                 <li><a href=""><i class="icon-credit-card"></i><span>Payments</span></a></li>
                 <li><a href=""><i class="icon-share-alt"></i><span>Shipments</span></a></li>
                 <li><a href=""><i class="icon-loop"></i><span>Returns</span></a></li>

@@ -12,8 +12,7 @@ class InventoryController extends Controller
 
 	public function index()
     {
-        $data = $this->supabase->getProducts();
-        return view('inventory.index');
+       return view('inventory.index');
     }
 
     public function __construct(ProductService $productService)
