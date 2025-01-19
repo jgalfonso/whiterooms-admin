@@ -4,6 +4,7 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ URL::asset('assets/vendor/jquery-datatable/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('assets/vendor/sweetalert/sweetalert.css') }}">
 
     <style>
         div.dataTables_wrapper div.dataTables_filter input {
@@ -28,8 +29,8 @@
                 </div>    
                 
                 <div class="col-md-6 col-sm-12 text-right hidden-xs">
-                    <a href="javascript:void(0);" class="btn btn-sm btn-primary btn-round" title="">Confirmed</a>
-                    <a href="javascript:void(0);" class="btn btn-sm btn-success btn-round" title="">Send Message</a>
+                    <a href="javascript:void(0);" class="btn btn-sm btn-primary btn-round" title=""  data-toggle="modal" data-target="#mdlStatus">Update</a>
+                    <a href="javascript:void(0);" class="btn btn-sm btn-success btn-round" title=""><i class="fa fa-wechat"></i> Chat</a>
                 </div>
             </div>
         </div>
@@ -93,6 +94,10 @@
                         <h2>Summary</h2>
                     </div>
                     <div class="body">
+                        <input id="id" name="id" type="hidden" value="{{ $data[0]['id'] }}" />
+                        <input id="user_id" name="user_id" type="hidden" value="{{ $data[0]['user_id'] }}" />
+                        <input id="reference_no" name="reference_no" type="hidden" value="{{ $data[0]['reference_no'] }}" />
+
                         <small class="text-muted">Shipping Details: </small>
                         <p class="mb-0">{{ $data[0]['shipping_address']['firstname'] }} {{ $data[0]['shipping_address']['lastname'] }}</p>
                         <p class="mb-0">{{ $data[0]['shipping_address']['phone_no'] }}</p>
@@ -113,6 +118,44 @@
                         <p>{{ $data[0]['payments']['discount'] }}</p>
                         <small class="text-muted">Total Payment: </small>
                         <p><b>{{ $data[0]['payments']['net'] }}</b></p>
+                        <small class="text-muted">Status: </small>
+                        <p class="text-success">{{ $data[0]['status'] }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="mdlStatus" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Order Status</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-md-12">
+                            <div class="fancy-radio">
+                                <label><input name="status" value="For Packing" type="radio" checked=""><span><i></i>For Packing</span></label>
+                            </div>
+                            <div class="fancy-radio">
+                                <label><input name="status" value="Packed" type="radio"><span><i></i>Packed</span></label>
+                            </div>
+                            <div class="fancy-radio">
+                                <label><input name="status" value="For Shipping" type="radio"><span><i></i>For Shipping</span></label>
+                            </div>
+                            <div class="fancy-radio">
+                                <label><input name="status" value="Shipped" type="radio"><span><i></i>Shipped</span></label>
+                            </div>
+                            <div class="fancy-radio">
+                                <label><input name="status" value="Delivered" type="radio"><span><i></i>Delivered</span></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-round btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-round btn-primary" onclick="submit();">Save Changes</button>
                     </div>
                 </div>
             </div>
@@ -122,4 +165,7 @@
 
 @section('script')
     <script src="{{ URL::asset('assets/bundles/datatablescripts.bundle.js') }}"></script>
+    <script src="{{ URL::asset('assets/vendor/sweetalert/sweetalert.min.js') }}"></script>
+
+    <script src="{{ URL::asset('js/orders/view.js') }}"></script>
 @endsection
