@@ -31,6 +31,7 @@ Route::group(['name' => 'inventory', 'prefix' => 'inventory'], function () {
 Route::group(['name' => 'orders', 'prefix' => 'orders'], function () {
     Route::get('get-orders','OrderController@getOrders');
     Route::post('edit','OrderController@edit');
+    Route::post('send','OrderController@send');
 });
 
 

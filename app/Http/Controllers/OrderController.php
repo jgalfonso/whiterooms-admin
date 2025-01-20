@@ -3,17 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Services\MessageService;
 use App\Services\NotificationService;
 use App\Services\OrderService;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {   
+    protected $messages;
     protected $notification;
     protected $supabase;
 
-    public function __construct(NotificationService $notification, OrderService $orderService)
+    public function __construct(MessageService $messages, NotificationService $notification, OrderService $orderService)
     {
+        $this->messages = $messages;
         $this->notification = $notification;
         $this->supabase = $orderService;
     }
@@ -26,7 +29,8 @@ class OrderController extends Controller
     public function view($id)
     {  
         $data = $this->supabase->getOrder($id);
-        return view('orders.view', compact('data'));
+        $chat = $this->messages->getMessages($id);
+        return view('orders.view', compact('chat', 'data'));
     }
 
     public function getOrders()
@@ -66,5 +70,11 @@ class OrderController extends Controller
         }
         
         echo json_encode($data);
+    }
+
+    public function send(Request $request) 
+    {
+        $data = $this->messages->store($request);
+        echo json_encode($data);    
     }
 }

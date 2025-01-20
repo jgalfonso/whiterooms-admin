@@ -7,8 +7,6 @@ $(function () {
         init: function () {
             this.setElements();
 
-            App.initDataTable();
-
             this.bindEvents();
         },
 
@@ -50,6 +48,36 @@ function submit() {
                         window.location.reload();
                     }, 500);
                 });
+            }
+        },
+    });
+}
+
+function send() {
+    if (!$('#form').parsley().validate()) { return; }
+    
+    $.ajax({
+        type:'POST',
+        url : window.location.protocol + '//' + window.location.host + '/api/orders/send',
+        data: {
+            orderID : $('#id').val(),
+            userID : $('#user_id').val(),
+            body : $('#message').val(),
+            _token : $('meta[name="csrf-token"]').attr('content'),
+        },
+        dataType: 'json',
+        success: function(data) {
+            if(data && data.success == true) {
+                
+                var html = '<li class="right clearfix">';
+                html += '<img class="user_pix" src="../../../assets/images/avatar1.png" alt="avatar">';
+                html += '<div class="message">';
+                html += '<span>'+$('#message').val()+'</span>';
+                html += '</div>';
+                html += '<span class="data_time">a few seconds ago</span>';
+                html += '</li>';
+                $('.message_data').append(html);
+                $('#message').val('');
             }
         },
     });

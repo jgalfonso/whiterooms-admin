@@ -29,8 +29,8 @@
                 </div>    
                 
                 <div class="col-md-6 col-sm-12 text-right hidden-xs">
-                    <a href="javascript:void(0);" class="btn btn-sm btn-primary btn-round" title=""  data-toggle="modal" data-target="#mdlStatus">Update</a>
-                    <a href="javascript:void(0);" class="btn btn-sm btn-success btn-round" title=""><i class="fa fa-wechat"></i> Chat</a>
+                    <a href="javascript:void(0);" class="btn btn-sm btn-primary btn-round" title="" data-toggle="modal" data-target="#mdlStatus">Update</a>
+                    <a href="javascript:void(0);" class="btn btn-sm btn-success btn-round" title="" data-toggle="modal" data-target="#mdlChat"><i class="fa fa-wechat"></i> Chat</a>
                 </div>
             </div>
         </div>
@@ -160,11 +160,66 @@
                 </div>
             </div>
         </div>
+
+        <div  id="mdlChat" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Chat</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="d-flex mb-3">
+                            <div class="chatapp_body" style="margin: 0; width: 100%; border-bottom: 1px solid #e1e8ed;">
+                                <div class="chat-history">
+                                    <ul class="message_data">
+                                        @foreach ($chat as $item)
+                                            @if($item['is_admin'] === 1)
+                                                <li class="right clearfix">
+                                                    <img class="user_pix" src="{{ URL::asset('assets/images/avatar1.png') }}" alt="avatar">
+                                                    <div class="message">
+                                                        <span>{{ $item['body'] }}</span>
+                                                    </div>
+                                                    <span class="data_time">
+                                                        {{ \Carbon\Carbon::parse($item['created_at'])->isToday() ? \Carbon\Carbon::parse($item['created_at'])->format('g:i A') . ', Today' : \Carbon\Carbon::parse($item['created_at'])->format('g:i A, F j, Y') }}
+                                                    </span>
+                                                </li>
+                                            @else
+                                                <li class="left clearfix">
+                                                    <img class="user_pix" src="{{ URL::asset('assets/images/avatar2.png') }}" alt="avatar">
+                                                    <div class="message">
+                                                        <span>{{ $item['body'] }}</span>
+                                                    </div>
+                                                    <span class="data_time">
+                                                        {{ \Carbon\Carbon::parse($item['created_at'])->isToday() ? \Carbon\Carbon::parse($item['created_at'])->format('g:i A') . ', Today' : \Carbon\Carbon::parse($item['created_at'])->format('g:i A, F j, Y') }} 
+                                                    </span>
+                                                </li>
+                                            @endif
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <form id="form" novalidate="">
+                                <textarea id="message" name="message" rows="4" class="form-control no-resize" placeholder="Type a message..." required></textarea>
+                            </form>
+                        </div>
+                        <div class="align-right">
+                            <button class="btn btn-round btn-warning" onclick="send();">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 
 @section('script')
     <script src="{{ URL::asset('assets/bundles/datatablescripts.bundle.js') }}"></script>
+    <script src="{{ URL::asset('assets/vendor/parsleyjs/js/parsley.min.js') }}"></script>
     <script src="{{ URL::asset('assets/vendor/sweetalert/sweetalert.min.js') }}"></script>
 
     <script src="{{ URL::asset('js/orders/view.js') }}"></script>

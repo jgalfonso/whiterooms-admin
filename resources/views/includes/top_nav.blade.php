@@ -6,7 +6,7 @@
 
     <ul class="nav navbar-nav">
         <li class="dropdown">
-            <a href="javascript:void(0);" class="dropdown-toggle icon-menu" data-toggle="dropdown">
+            <a href="javascript:void(0);" class="dropdown-toggle icon-menu" data-toggle="dropdown" style="display: none;">
                 <i class="icon-bell"></i>
                 <span class="notification-dot bg-azura">4</span>
             </a>
@@ -56,7 +56,7 @@
 <div class="navbar-right">
     <div id="navbar-menu">
         <ul class="nav navbar-nav">
-            <li><a href="javascript:void(0);" class="search_toggle icon-menu" title="Search Result"><i class="icon-magnifier"></i></a></li>                        
+            <li  style="display: none;"><a href="javascript:void(0);" class="search_toggle icon-menu" title="Search Result"><i class="icon-magnifier"></i></a></li>                        
             <li><a onclick="logOut();" href="javascript:void(0)" class="icon-menu"><i class="icon-power"></i></a></li>
         </ul>
     </div>
