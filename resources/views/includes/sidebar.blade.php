@@ -28,12 +28,12 @@
 
                 <li class="header">Transactions</li>
                 <li class="{{ set_nav_status(['transactions/orders*']) }}"><a href="{{ route('orders') }}"><i class="icon-basket"></i><span>Orders</span></a></li>
-                <li><a href=""><i class="icon-credit-card"></i><span>Payments</span></a></li>
-                <li><a href=""><i class="icon-share-alt"></i><span>Shipments</span></a></li>
-                <li><a href=""><i class="icon-loop"></i><span>Returns</span></a></li>
+                <li class="{{ set_nav_status(['transactions/payments*']) }}"><a href="{{ route('payments') }}"><i class="icon-credit-card"></i><span>Payments</span></a></li>
+                <li class="{{ set_nav_status(['transactions/shipments*']) }}"><a href="{{ route('shipments') }}"><i class="icon-share-alt"></i><span>Shipments</span></a></li>
+                <li class="{{ set_nav_status(['transactions/returns*']) }}"><a href="{{ route('returns') }}"><i class="icon-loop"></i><span>Returns</span></a></li>
 
-                <li class="header">Utilities</li>
-                <li>
+                <li class="header" style="display: none;">Utilities</li>
+                <li style="display: none;">
                     <a href="#" class="has-arrow"><i class="icon-printer"></i><span>Reports</span></a>
                     <ul>
                         <li><a href="">Interest Payout</a></li>
@@ -41,7 +41,7 @@
                 </li>
 
                 <li class="header">Manage Users</li>
-                <li><a href=""><i class="icon-users"></i><span>Admin</span></a></li>
+                <li class="{{ set_nav_status(['users/admin*']) }}"><a href="{{ route('admin') }}"><i class="icon-users"></i><span>Admin</span></a></li>
             </ul>
         </nav>     
     </div>

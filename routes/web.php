@@ -33,5 +33,23 @@ Route::group(['middleware' => 'supabase.session'], function() {
             Route::get('/', 'OrderController@index')->name('orders');
             Route::get('/view/{id}', 'OrderController@view')->name('orders.view');
         });
+
+        Route::group(['name' => 'payments', 'prefix' => 'payments'], function () {
+            Route::get('/', 'PaymentController@index')->name('payments');
+        });
+
+        Route::group(['name' => 'shipments', 'prefix' => 'shipments'], function () {
+            Route::get('/', 'ShipmentController@index')->name('shipments');
+        });
+
+        Route::group(['name' => 'returns', 'prefix' => 'returns'], function () {
+            Route::get('/', 'ReturnController@index')->name('returns');
+        });
+    });
+
+    Route::group(['name' => 'users', 'prefix' => 'users'], function () {
+        Route::group(['name' => 'admin', 'prefix' => 'admin'], function () {
+            Route::get('/', 'UsersController@index')->name('admin');
+        });
     });
 });

@@ -1,6 +1,6 @@
 @extends('template')
 
-@section('title', 'Transactions | Orders')
+@section('title', 'Transactions | Payments')
 
 @section('css')
     <link rel="stylesheet" href="{{ URL::asset('assets/vendor/jquery-datatable/dataTables.bootstrap4.min.css') }}">
@@ -17,11 +17,11 @@
         <div class="block-header">
             <div class="row clearfix">
                 <div class="col-md-6 col-sm-12">
-                    <h2>Orders</h2>
+                    <h2>Payments</h2>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="">Transactions</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Orders</li>
+                            <li class="breadcrumb-item active" aria-current="page">Payments</li>
                         </ol>
                     </nav>
                 </div>     
@@ -36,15 +36,15 @@
                              <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Order #</th>
+                                    <th>Invoice #</th>
+                                    <th>Payment Date</th>
                                     <th>Customer</th>
-                                    <th>Items</th>
-                                    <th>Delivery Type</th>
+                                    <th>Order #</th>
                                     <th>Payment Method</th>
                                     <th>Total</th>
-                                    <th>Order Date</th>
-                                    <th>Status</th>
-                                    <th style="width: 1%;"><i class="fa fa-level-down"></i></th>
+                                    <th>Delivery Fee</th>
+                                    <th>Discount</th>
+                                    <th>Net</th>
                                 </tr>
                             </thead>
 
@@ -60,5 +60,5 @@
 
 @section('script')
     <script src="{{ URL::asset('assets/bundles/datatablescripts.bundle.js') }}"></script>
-    <script src="{{ URL::asset('js/orders/index.js') }}"></script>
+    <script src="{{ URL::asset('js/payments/index.js') }}"></script>
 @endsection

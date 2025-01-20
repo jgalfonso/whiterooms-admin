@@ -27,7 +27,7 @@ class OrderService
 
     public function getOrders()
     {   
-        $response = $this->client->get("/rest/v1/orders?select=*,profiles(firstname,lastname),payments(payment_method_id),order_items(id)");
+        $response = $this->client->get("/rest/v1/orders?select=*,profiles(firstname,lastname),payments(payment_method_id),order_items(id)&order=created_at.desc");
         //$response = $this->client->get("/rest/v1/orders?select=*,profiles(*),order_items(*,products(id,name,unit_price))");
         return json_decode($response->getBody(), true);
     }

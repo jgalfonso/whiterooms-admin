@@ -2,16 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\PaymentService;
 use App\Services\StripeService;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
+    protected $paymentService;
     protected $stripeService;
 
-    public function __construct(StripeService $stripeService)
+    public function __construct(PaymentService $paymentService, StripeService $stripeService)
     {
+        $this->paymentService = $paymentService;
         $this->stripeService = $stripeService;
+    }
+
+    public function index()
+    { 
+        return view('payments.index');
+    }
+
+    public function getPayments()
+    {   
+        $data = $this->paymentService->getPayments();
+        return response()->json(['data' => collect($data)]);
     }
 
     /**

@@ -1,7 +1,7 @@
 $(function () {
 
     var App = {
-        baseUrl : window.location.protocol + '//' + window.location.host + '/api/orders/',
+        baseUrl : window.location.protocol + '//' + window.location.host + '/api/payments/',
         csrfToken : $('meta[name="csrf-token"]').attr('content'),
 
         init: function () {
@@ -21,7 +21,6 @@ $(function () {
         },
 
         initDataTable: function() {
-            
             var table = $('#tbl').DataTable({
                 processing: true,
                 serverMethod: 'GET',
@@ -30,19 +29,19 @@ $(function () {
                 bLengthChange: true,
                 pageLength: 25,
                 scrollX: true,
-                ajax: App.baseUrl + "get-orders",
-                order: [[ 7, "desc" ]],
+                ajax: App.baseUrl + "get-payments",
+                order: [[ 2, "desc" ]],
                 columns:[
                     { data: 'id', 'className': 'hide' },
-                    { data: 'reference_no' },
+                    { data: 'invoice_no' },
+                    { data: 'payment_date' },
                     { data: 'name' },
-                    { data: 'items', 'className': 'text-right' },
-                    { data: 'delivery_type' },
                     { data: 'payment_method' },
+                    { data: 'order_no' },
                     { data: 'total', 'className': 'text-right' },
-                    { data: 'order_date' },
-                    { data: 'status' },
-                    { data: 'action', 'className': 'text-center' },
+                    { data: 'delivery_fee', 'className': 'text-right' },
+                    { data: 'discount', 'className': 'text-right' },
+                    { data: 'net', 'className': 'text-right' },
                 ],
                 language: {
                     paginate: {
@@ -50,7 +49,7 @@ $(function () {
                         previous: '«' 
                     },
                     processing: "Please wait while we load the data...",
-                    searchPlaceholder: 'By Order # / Name'
+                    searchPlaceholder: 'By Invoice # / Name'
                 },
                 initComplete: function(settings, json) {
                     //$('.span-counter').html(json.recordsTotal);
@@ -70,7 +69,7 @@ $(function () {
                         orderable: false,
                         'render': function (data, type, row){
 
-                            return row['reference_no'];
+                            return row['payments']['reference_no'];
 
                         }
                     },
@@ -79,7 +78,7 @@ $(function () {
                         orderable: true,
                         'render': function (data, type, row){
 
-                            return row['profiles']['firstname']+' '+ row['profiles']['lastname'];
+                            return formatDate(row['payments']['created_at']);
                         }
                     },
                     {
@@ -87,15 +86,17 @@ $(function () {
                         orderable: true,
                         'render': function (data, type, row){
 
-                            return row['order_items'].length;
+                            return row['profiles']['firstname']+' '+ row['profiles']['lastname'];
                         }
                     },
+
                     {
                         targets: 4,
-                        orderable: true,
+                        orderable: false,
                         'render': function (data, type, row){
 
-                            return row['delivery_type_id']==1?'Ship':'Pickup in Store';
+                            return row['reference_no'];
+
                         }
                     },
                     {
@@ -108,26 +109,26 @@ $(function () {
                     },
                     {
                         targets: 6,
-                        orderable: true,
+                        orderable: false,
                         'render': function (data, type, row){
 
-                            return row['total'];
+                            return row['payments']['total'];
                         }
                     },
                     {
                         targets: 7,
-                        orderable: true,
+                        orderable: false,
                         'render': function (data, type, row){
 
-                            return formatDate(row['created_at']);
+                            return row['payments']['delivery_fee'];
                         }
                     },
                     {
                         targets: 8,
-                        orderable: true,
+                        orderable: false,
                         'render': function (data, type, row){
 
-                            return  '<span class="badge badge-info ml-0 mr-0">'+row['status']+'</span>';
+                            return  row['payments']['discount'];
                         }
                     },
                     {
@@ -135,8 +136,7 @@ $(function () {
                         orderable: false,
                         'render': function (data, type, row){
 
-                            var content = '<a href="/transactions/orders/view/'+row['id']+'" class="btn btn-sm btn-default" title="Edit" data-toggle="tooltip" data-placement="top" data-original-title="Edit" style="cursor: pointer;"><i class="icon-pencil"></i></a>';
-                            return content;
+                            return  row['payments']['net'];
                         }
                     }
                 ]
@@ -146,10 +146,6 @@ $(function () {
 
     App.init();
 });
-
-function set(id) {
-   
-}
 
 function formatDate(date) {
     var d = new Date(date),
