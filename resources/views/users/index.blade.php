@@ -88,6 +88,11 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label>Middlename</label>
+                                    <input id="middlename" name="middlename" type="text" class="form-control">
+                                </div>
+
+                                <div class="form-group">
                                     <label>Email</label><span style="color: red"> * </span>
                                     <input id="email" name="email" type="email" class="form-control" required>
                                 </div>

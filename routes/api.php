@@ -44,6 +44,8 @@ Route::group(['name' => 'shipments', 'prefix' => 'shipments'], function () {
 
 Route::group(['name' => 'users', 'prefix' => 'users'], function () {
     Route::get('get-users','UsersController@getUsers');
+    Route::post('store','UsersController@store');
+    Route::post('edit','UsersController@edit');
 });
 
 /*Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
