@@ -30,6 +30,7 @@ function submit() {
             id : $('#id').val(),
             userID : $('#user_id').val(),
             referenceNo : $('#reference_no').val(),
+            email : $('#email').val(),
             status : $("input[name='status']:checked").val(),
             _token : $('meta[name="csrf-token"]').attr('content'),
         },

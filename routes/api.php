@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('create-payment-intent', 'PaymentController@createPaymentIntent');
 Route::post('paypal/create-order', 'PayPalController@createOrder');
 Route::post('paypal/capture-order', 'PayPalController@captureOrder');
+Route::get('send-confirmation-email', 'MailController@sendConfirmation');
 
 Route::post('in', 'AuthController@in');
 Route::post('out', 'AuthController@out');

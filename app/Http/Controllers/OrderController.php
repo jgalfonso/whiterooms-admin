@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Mail\Order;
 use App\Services\MessageService;
 use App\Services\NotificationService;
 use App\Services\OrderService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {   
@@ -69,6 +71,12 @@ class OrderController extends Controller
             $this->notification->store($request);
         }
         
+        $details = [
+            'title' => $request->title,
+            'body' => $request->message,
+        ];
+        Mail::to($request->email)->send(new Order($details));
+
         echo json_encode($data);
     }
 

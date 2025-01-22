@@ -97,6 +97,7 @@
                         <input id="id" name="id" type="hidden" value="{{ $data[0]['id'] }}" />
                         <input id="user_id" name="user_id" type="hidden" value="{{ $data[0]['user_id'] }}" />
                         <input id="reference_no" name="reference_no" type="hidden" value="{{ $data[0]['reference_no'] }}" />
+                        <input id="email" name="email" type="hidden" value="{{ $data[0]['profiles']['email'] }}" />
 
                         <small class="text-muted">Shipping Details: </small>
                         <p class="mb-0">{{ $data[0]['shipping_address']['firstname'] }} {{ $data[0]['shipping_address']['lastname'] }}</p>
