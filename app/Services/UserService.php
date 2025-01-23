@@ -113,4 +113,28 @@ class UserService
             return $e->getMessage();
         }
     }
+
+    public function changePassword($request)
+    {
+        try {
+           
+            $authResponse = $this->client->put("/auth/v1/admin/users/{$request->query('id')}", [
+                'headers' => [
+                    'Authorization' => 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRvdWpnZmJ0Y2lhZ2dsbXloZ2lqIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcyNzY3NzExMywiZXhwIjoyMDQzMjUzMTEzfQ.H5tmKensDE0l_nzERD-isI4Jfs8AUbOumIdBOC6SLpA', // Admin token to authorize the request
+                    'Content-Type'  => 'application/json',  // Set content type to JSON
+                ],
+                    'json' => [
+                    'password' => $request->query('password'),
+                ],
+            ]);
+
+            if ($authResponse->getStatusCode() != 200) {
+                return ['message' => 'Failed to update user password'];
+            }
+            
+            return ['success' => true];
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
 }

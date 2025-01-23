@@ -18,6 +18,9 @@ Route::post('create-payment-intent', 'PaymentController@createPaymentIntent');
 Route::post('paypal/create-order', 'PayPalController@createOrder');
 Route::post('paypal/capture-order', 'PayPalController@captureOrder');
 Route::get('send-confirmation-email', 'MailController@sendConfirmation');
+Route::get('send-payment-receipt', 'MailController@sendPayment');
+Route::get('send-verification-code', 'MailController@sendVerificationCode');
+Route::get('change-password', 'UsersController@changePassword');
 
 Route::post('in', 'AuthController@in');
 Route::post('out', 'AuthController@out');

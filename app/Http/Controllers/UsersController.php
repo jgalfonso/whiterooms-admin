@@ -38,4 +38,10 @@ class UsersController extends Controller
         $data = $this->userService->edit($request, $token);
         echo json_encode($data);
     }
+
+    public function changePassword(Request $request) 
+    {   
+        $data = $this->userService->changePassword($request);
+        echo json_encode($data);
+    }
 }
