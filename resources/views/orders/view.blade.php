@@ -119,6 +119,10 @@
                         <p>{{ $data[0]['payments']['discount'] }}</p>
                         <small class="text-muted">Total Payment: </small>
                         <p><b>{{ $data[0]['payments']['net'] }}</b></p>
+                        @if($data[0]['notes'])
+                            <small class="text-muted">Notes: </small>
+                            <p>{{ $data[0]['notes'] }}</p>
+                        @endif
                         <small class="text-muted">Status: </small>
                         <p class="text-success">{{ $data[0]['status'] }}</p>
                     </div>
