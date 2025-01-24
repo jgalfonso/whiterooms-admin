@@ -21,6 +21,7 @@ Route::get('send-confirmation-email', 'MailController@sendConfirmation');
 Route::get('send-payment-receipt', 'MailController@sendPayment');
 Route::get('send-verification-code', 'MailController@sendVerificationCode');
 Route::get('change-password', 'UsersController@changePassword');
+Route::get('delete-account', 'UsersController@deleteAccount');
 
 Route::post('in', 'AuthController@in');
 Route::post('out', 'AuthController@out');

@@ -44,4 +44,10 @@ class UsersController extends Controller
         $data = $this->userService->changePassword($request);
         echo json_encode($data);
     }
+
+    public function deleteAccount(Request $request) 
+    {   
+        $data = $this->userService->deleteAccount($request);
+        echo json_encode($data);
+    }
 }
