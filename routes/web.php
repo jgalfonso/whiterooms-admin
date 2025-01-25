@@ -45,11 +45,19 @@ Route::group(['middleware' => 'supabase.session'], function() {
         Route::group(['name' => 'returns', 'prefix' => 'returns'], function () {
             Route::get('/', 'ReturnController@index')->name('returns');
         });
+
+        Route::group(['name' => 'vouchers', 'prefix' => 'vouchers'], function () {
+            Route::get('/', 'VoucherController@index')->name('vouchers');
+        });
     });
 
     Route::group(['name' => 'users', 'prefix' => 'users'], function () {
         Route::group(['name' => 'admin', 'prefix' => 'admin'], function () {
             Route::get('/', 'UsersController@index')->name('admin');
+        });
+
+        Route::group(['name' => 'subscribers', 'prefix' => 'subscribers'], function () {
+            Route::get('/', 'SubscribersController@index')->name('subscribers');
         });
     });
 });

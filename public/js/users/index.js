@@ -39,6 +39,7 @@ $(function () {
                     { data: 'id' },
                     { data: 'fulllname' },
                     { data: 'email' },
+                    { data: 'action', className: 'text-center' },
                 ],
                 language: {
                     paginate: {
@@ -84,7 +85,7 @@ $(function () {
                         orderable: false,
                         'render': function (data, type, row){
 
-                            var content = '<a onclick="set(\''+row['id']+'\',\''+row['lastname']+'\',\''+row['firstname']+'\',\''+row['middlename']+'\',\''+row['email']+'\');" class="btn btn-sm btn-default" title="Edit" data-toggle="tooltip" data-placement="top" data-original-title="Edit" style="cursor: pointer;"><i class="icon-pencil"></i></a>';
+                            var content = '<a onclick="set(\''+row['id']+'\',\''+row['lastname']+'\',\''+row['firstname']+'\',\''+row['middlename']+'\',\''+row['email']+'\');" class="btn btn-sm btn-default" title="Edit" data-toggle="tooltip" data-placement="top" data-original-title="Edit" style="cursor: pointer;"><i class="icon-pencil"></i></a> <a onclick="deleteAccount(\''+row['id']+'\');" class="btn btn-sm btn-default" title="Delete" data-toggle="tooltip" data-placement="top" data-original-title="Delete" style="cursor: pointer;"><i class="fa fa-trash-o" style="color: red;"></i></a>';
                             return content;
                         }
                     }
@@ -218,4 +219,49 @@ function set(id, lastname, firstname, middlename, email) {
     bootstrap_alert.close('#alert');     
     $('#form').parsley().reset();
     $('#lastname').focus();
+}
+
+function deleteAccount(id) 
+{   
+    swal({
+        title: "Warning!",
+        text: "Are you sure you want to delete this account?",
+        type: "warning",
+        showCancelButton: true, 
+        confirmButtonText: "Yes", 
+        cancelButtonText: "Cancel", 
+        closeOnConfirm: false,
+        showLoaderOnConfirm: true, 
+    }, function (isConfirm) {
+        if (isConfirm) {
+            
+            $.ajax({
+                type:'POST',
+                url : window.location.protocol + '//' + window.location.host + '/api/users/delete/',
+                data: {
+                    id : id,
+                    _token : $('meta[name="csrf-token"]').attr('content'),
+                },
+                dataType: 'json',
+                success: function(data) {
+                    if(data && data.success == true) {
+                        
+                        swal({
+                            title: "Success!", text: '1 row successfully deleted.', type: "success",
+                            showCancelButton: false,
+                            closeOnConfirm: false,
+                            showLoaderOnConfirm: true,
+                        }, function () {
+                            setTimeout(function () {
+                                window.location.reload();
+                            }, 500);
+                        });
+                    }
+                    else swal({ title: "Error!", text: data.message, type: "error" });
+                },
+            });
+        } else {
+            swal.close(); 
+        }
+    });
 }

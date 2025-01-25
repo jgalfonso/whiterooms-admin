@@ -47,10 +47,20 @@ Route::group(['name' => 'shipments', 'prefix' => 'shipments'], function () {
     Route::get('get-shipments','ShipmentController@getShipments');
 });
 
+Route::group(['name' => 'vouchers', 'prefix' => 'vouchers'], function () {
+    Route::get('get-vouchers','VoucherController@getVouchers');
+});
+
 Route::group(['name' => 'users', 'prefix' => 'users'], function () {
     Route::get('get-users','UsersController@getUsers');
     Route::post('store','UsersController@store');
     Route::post('edit','UsersController@edit');
+    Route::post('delete', 'UsersController@deleteUserAccount');
+});
+
+Route::group(['name' => 'subscribers', 'prefix' => 'subscribers'], function () {
+    Route::get('get-subscribers','SubscribersController@getSubscribers');
+    Route::post('delete', 'SubscribersController@deleteAccount');
 });
 
 /*Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

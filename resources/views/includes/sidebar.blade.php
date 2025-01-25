@@ -30,7 +30,8 @@
                 <li class="{{ set_nav_status(['transactions/orders*']) }}"><a href="{{ route('orders') }}"><i class="icon-basket"></i><span>Orders</span></a></li>
                 <li class="{{ set_nav_status(['transactions/payments*']) }}"><a href="{{ route('payments') }}"><i class="icon-credit-card"></i><span>Payments</span></a></li>
                 <li class="{{ set_nav_status(['transactions/shipments*']) }}"><a href="{{ route('shipments') }}"><i class="icon-share-alt"></i><span>Shipments</span></a></li>
-                <li class="{{ set_nav_status(['transactions/returns*']) }}"><a href="{{ route('returns') }}"><i class="icon-loop"></i><span>Returns</span></a></li>
+                <li style="display: none;" class="{{ set_nav_status(['transactions/returns*']) }}"><a href="{{ route('returns') }}"><i class="icon-loop"></i><span>Returns</span></a></li>
+                <li class="{{ set_nav_status(['transactions/vouchers*']) }}"><a href="{{ route('vouchers') }}"><i class="icon-tag"></i><span>Vouchers</span></a></li>
 
                 <li class="header" style="display: none;">Utilities</li>
                 <li style="display: none;">
@@ -42,6 +43,7 @@
 
                 <li class="header">Manage Users</li>
                 <li class="{{ set_nav_status(['users/admin*']) }}"><a href="{{ route('admin') }}"><i class="icon-users"></i><span>Admin</span></a></li>
+                <li class="{{ set_nav_status(['users/subscribers*']) }}"><a href="{{ route('subscribers') }}"><i class="icon-users"></i><span>Subscribers</span></a></li>
             </ul>
         </nav>     
     </div>

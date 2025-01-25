@@ -50,4 +50,10 @@ class UsersController extends Controller
         $data = $this->userService->deleteAccount($request);
         echo json_encode($data);
     }
+
+    public function deleteUserAccount(Request $request) 
+    {   
+        $data = $this->userService->deleteUserAccount($request);
+        echo json_encode($data);
+    }
 }
