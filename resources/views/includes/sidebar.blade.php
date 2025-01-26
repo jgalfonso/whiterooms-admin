@@ -32,6 +32,7 @@
                 <li class="{{ set_nav_status(['transactions/shipments*']) }}"><a href="{{ route('shipments') }}"><i class="icon-share-alt"></i><span>Shipments</span></a></li>
                 <li style="display: none;" class="{{ set_nav_status(['transactions/returns*']) }}"><a href="{{ route('returns') }}"><i class="icon-loop"></i><span>Returns</span></a></li>
                 <li class="{{ set_nav_status(['transactions/vouchers*']) }}"><a href="{{ route('vouchers') }}"><i class="icon-tag"></i><span>Vouchers</span></a></li>
+                <li style="display: none;" class="{{ set_nav_status(['transactions/chat*']) }}"><a href="{{ route('chat') }}"><i class="icon-bubbles"></i><span>Chat Support</span></a></li>
 
                 <li class="header" style="display: none;">Utilities</li>
                 <li style="display: none;">

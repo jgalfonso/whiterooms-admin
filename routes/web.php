@@ -49,6 +49,10 @@ Route::group(['middleware' => 'supabase.session'], function() {
         Route::group(['name' => 'vouchers', 'prefix' => 'vouchers'], function () {
             Route::get('/', 'VoucherController@index')->name('vouchers');
         });
+
+        Route::group(['name' => 'chat', 'prefix' => 'chat'], function () {
+            Route::get('/', 'ChatController@index')->name('chat');
+        });
     });
 
     Route::group(['name' => 'users', 'prefix' => 'users'], function () {

@@ -42,11 +42,30 @@ class AuthController extends Controller
         if (!$token) {
             return response()->json(['error' => 'Not authenticated'], 401);
         }
+        
+        if($this->isTokenExpired( $token)) {
+            session()->forget('supabase_token');
+            session()->forget('supabase_user');
 
-        $result = $this->supabase->logOut($token);
-        session()->forget('supabase_token');
-        session()->forget('supabase_user');
+            return response()->json(['success' => true]);
+        }
+        else {
+            $result = $this->supabase->logOut($token);
+            session()->forget('supabase_token');
+            session()->forget('supabase_user');
 
-        return response()->json(['success' => $result]);
+            return response()->json(['success' => $result]);
+        }
+    }
+
+    private function isTokenExpired($accessToken)
+    {
+        // Decode the JWT and check the expiration time (exp)
+        $parts = explode('.', $accessToken);
+        $payload = json_decode(base64_decode($parts[1]), true);
+        $expiration = isset($payload['exp']) ? $payload['exp'] : 0;
+
+        // Check if token expired (current timestamp > exp)
+        return $expiration < time();
     }
 }
