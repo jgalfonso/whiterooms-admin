@@ -27,13 +27,13 @@ class UserService
 
     public function getUsers()
     {   
-        $response = $this->client->get("/rest/v1/profiles?is_admin=eq.1&select=*");
+        $response = $this->client->get("/rest/v1/profiles?is_admin=eq.1&select=*&order=lastname.asc&order=firstname.asc");
         return json_decode($response->getBody(), true);
     }
 
     public function getSubscribers()
     {   
-        $response = $this->client->get("/rest/v1/profiles?is_admin=is.null&select=*");
+        $response = $this->client->get("/rest/v1/profiles?is_admin=is.null&select=*&order=lastname.asc&order=firstname.asc");
         return json_decode($response->getBody(), true);
     }
 

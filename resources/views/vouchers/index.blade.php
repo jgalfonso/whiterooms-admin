@@ -53,9 +53,10 @@
                              <thead>
                                 <tr>
                                     <th>Code</th>
-                                    <th>Name</th>
-                                    <th>Description</th>
+                                    <th>Name / Description</th>
                                     <th>Discount</th>
+                                    <th>User</th>
+                                    <th>Status</th>
                                     <th><i class="fa fa-level-down"></i></th>
                                 </tr>
                             </thead>
@@ -80,22 +81,22 @@
                             <form id="form" novalidate="">
                                 <div class="form-group">
                                     <label>Name</label><span style="color: red"> * </span>
-                                    <input id="lastname" name="lastname" type="text" class="form-control" required>
+                                    <input id="name" name="name" type="text" class="form-control" required>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Descriptiom</label><span style="color: red"> * </span>
-                                    <input id="firstname" name="firstname" type="text" class="form-control" required>
+                                    <label>Description</label><span style="color: red"> * </span>
+                                    <input id="description" name="description" type="text" class="form-control" required>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Discount (%)</label>
-                                    <input id="middlename" name="middlename" type="number" class="form-control">
+                                    <input id="discount" name="discount" type="number" class="form-control" required>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Pax</label><span style="color: red"> * </span>
-                                    <input id="email" name="email" type="number" class="form-control" required>
+                                    <input id="pax" name="pax" type="number" class="form-control" required>
                                 </div>
 
                                 <div class="form-group mt-5">
@@ -109,7 +110,48 @@
             </div>
         </div>
 
-        <input id="hdID" type="hidden">
+        <div id="mdlAllocation" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Voucher Allocation</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-md-12">
+                            <form id="form2" novalidate="">
+                                <div class="form-group">
+                                    <label>Code</label>
+                                    <input id="code" name="code" type="text" class="form-control" disabled>
+                                    <input id="hdID" type="hidden">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Name / Description</label>
+                                    <input id="details" name="details" type="text" class="form-control" disabled>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>User</label><span style="color: red"> * </span>
+                                    <select id="user" name="user" class="form-control" required>
+                                        <option value="" selected="">Choose User...</option>
+                                        @foreach ($subscribers as $item)
+                                            <option value="{{ $item['id'] }}">{{ $item['lastname'] }}, {{ $item['firstname'] }} {{ $item['middlename'] }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-round btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-round btn-primary" onclick="submit();">Submit </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 

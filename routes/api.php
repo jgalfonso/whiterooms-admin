@@ -49,6 +49,9 @@ Route::group(['name' => 'shipments', 'prefix' => 'shipments'], function () {
 
 Route::group(['name' => 'vouchers', 'prefix' => 'vouchers'], function () {
     Route::get('get-vouchers','VoucherController@getVouchers');
+    Route::post('store','VoucherController@store');
+    Route::post('edit', 'VoucherController@edit');
+    Route::post('destroy', 'VoucherController@destroy');
 });
 
 Route::group(['name' => 'users', 'prefix' => 'users'], function () {
