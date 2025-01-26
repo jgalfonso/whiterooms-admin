@@ -48,10 +48,10 @@
                 <div class="card">
                     <div class="body">
                         <div class="auth_brand" style="margin-bottom: 0;">
-                            <a class="navbar-brand" href="javascript:void(0);"><img src="assets/images/logo.jpeg" class="d-inline-block align-top mr-2" alt="" style="width: 100px;"></a>
+                            <a class="navbar-brand" href="javascript:void(0);"><img src="assets/images/icon.png" class="d-inline-block align-top mr-2" alt="" style="width: 100px;"></a>
                         </div>
 
-                        <span style="color: #000; font-size: 30px;"><b>WHITEROOMS</b> V1.0</span>
+                        <span style="color: #000; font-size: 30px;"><b>GRAYCLAY</b> SKIN CARE</span>
                         <p class="lead" style="margin-top: 30px;">Already have an account?</p>
                         
                         <form class="form-auth-small m-t-20">

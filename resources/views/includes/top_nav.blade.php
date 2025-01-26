@@ -1,6 +1,6 @@
 <div class="navbar-left" style="margin-left: 15px;">
     <div class="navbar-btn">
-        <a href="index.html"><img src="{{ URL::asset('assets/images/logo.jpeg') }}" alt="Whiterooms Logo" class="img-fluid logo"></a>
+        <a href="index.html"><img src="{{ URL::asset('assets/images/icon.png') }}" alt="Whiterooms Logo" class="img-fluid logo"></a>
         <button type="button" class="btn-toggle-offcanvas"><i class="lnr lnr-menu fa fa-bars"></i></button>
     </div>
 
